@@ -22,10 +22,9 @@ const config: WranglerActionConfig = {
 	COMMANDS: getMultilineInput("command"),
 	QUIET_MODE: getBooleanInput("quiet"),
 	PACKAGE_MANAGER: getInput("packageManager"),
-	WRANGLER_OUTPUT_DIR: `${join(
-		tmpdir(),
-		`wranglerArtifacts-${crypto.randomUUID()}`,
-	)}`,
+	WRANGLER_OUTPUT_DIR:
+		getInput("wranglerOutputDir") ||
+		`${join(tmpdir(), `wranglerArtifacts-${crypto.randomUUID()}`)}`,
 	GITHUB_TOKEN: getInput("gitHubToken", { required: false }),
 } as const;
 
